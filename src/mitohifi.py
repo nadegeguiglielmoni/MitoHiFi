@@ -143,7 +143,7 @@ def main():
 
         logging.info("3. Now let's run hifiasm to assemble the mapped and filtered reads!")
         
-        hifiasm_cmd = ["hifiasm", "--primary", "-t", str(args.t), "-f", str(args.m), 
+        hifiasm_cmd = ["hifiasm", "--primary", "--ont", "-t", str(args.t), "-f", str(args.m), 
                     "-o", "gbk.HiFiMapped.bam.filtered.assembled",
                     "gbk.HiFiMapped.bam.filtered.fasta"]
 
