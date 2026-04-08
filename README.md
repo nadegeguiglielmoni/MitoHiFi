@@ -19,8 +19,7 @@ Find out more [Darwin Tree of Life data portal](https://portal.darwintreeoflife.
 ## 1. Background
 **MitoHiFi is a python workflow that assembles mitogenomes from Pacbio HiFi reads.**
 
-With MitoHiFi v3.2 you can start from the raw Pacbio HiFi reads (flag **-r**) or from the assembled contigs (flag **-c**). You also need a reference mitochondria sequence in FASTA and [GenBank format](https://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html). We provide an internal script (findMitoReference.py) that can be used to find and download the most closely-related reference genome for your species from NCBI..
-
+With MitoHiFi v3.2 you can start from the raw Nanopore R10.4.1 reads (flag **-r**) or from the assembled contigs (flag **-c**). You also need a reference mitochondria sequence in FASTA and [GenBank format](https://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html). We provide an internal script (findMitoReference.py) that can be used to find and download the most closely-related reference genome for your species from NCBI..
 
 
 *The availability of high-quality long reads, such as PacBio HiFi, greatly simplifies the assembly of accurate mitogenomes. However, due to the circular nature of the molecule, mitogenomes are typically assembled redundantly, resulting in multicopy mitogenome contigs. To address this, we have developed a pipeline specifically designed to finalize the assembly and the annotation of the mitogenome. Our pipeline takes into account heteroplasmy, aiming to assemble and annotate all mtDNA variants present in your sample. Among these variants, MitoHiFi selects a representative as the final genome assembly based on several criteria including circularization and gene completeness. Additionally, MitoHiFi provides multiple intermediate outputs such as coverage and annotation plots and a multiple sequence alignment (MSA) of all the variants, which facilitates the analysis of mitochondrial heteroplasmy.*
@@ -49,7 +48,13 @@ Below, we describe the three different ways to install MitoHiFi.
 
 ### 2.1 Using Docker and Singularity
 
-We provide a Docker container for MitoHiFi. The container is built using GitHub Actions and can be obtained by running the following command:
+If you want to use the version adapted for Nanopore reads, you need to get this container:
+
+```
+docker pull nguiglie/mitohifi-ont:v3.2.2-ont
+```
+
+This is the regular Docker container:
 
 ```
 docker pull ghcr.io/marcelauliano/mitohifi:master
@@ -125,7 +130,7 @@ usage: MitoHiFi [-h] (-r <reads>.fasta | -c <contigs>.fasta) -f
                 [-covMap COVMAP] [-v] [-o <GENETIC CODE>]
 
 required arguments:
-  -r <reads>.fasta      -r: Pacbio Hifi Reads from your species
+  -r <reads>.fasta      -r: Nanopore reads from your species
   -c <contigs>.fasta    -c: Assembled fasta contigs/scaffolds to be searched
                         to find mitogenome
   -f <relatedMito>.fasta
